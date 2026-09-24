@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HEZZI | Athletics, Community & Wellness</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,600;0,800;1,800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            yellow: '#FFCC00', // Matched from logo
+                            yellowHover: '#E6B800',
+                            dark: '#0A0A0C',
+                            card: '#141418',
+                            border: '#26262E',
+                            muted: '#A1A1AA'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        heading: ['Space Grotesk', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .logo-text {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 800;
+            font-style: italic;
+            letter-spacing: -0.05em;
+        }
+        .glass-panel {
+            background: rgba(20, 20, 24, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+    </style>
+</head>
+<body class="bg-brand-dark text-white font-sans antialiased selection:bg-brand-yellow selection:text-black min-h-screen flex flex-col">
+
+    <!-- NAVBAR -->
+    <nav class="fixed top-0 w-full z-50 glass-panel border-b border-brand-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="bg-brand-yellow px-3 py-1.5 transform -skew-x-12 group-hover:bg-white transition-colors duration-200">
+                    <span class="logo-text text-2xl font-black text-black transform skew-x-12 inline-block uppercase tracking-tighter">HEZZI</span>
+                </div>
+                <span class="text-xs tracking-widest text-brand-muted uppercase font-semibold hidden sm:inline-block">Club</span>
+            </a>
+
+            <!-- Navigation Links -->
+            <div class="hidden md:flex items-center space-x-8 text-sm font-semibold tracking-wide">
+                <a href="#about" class="hover:text-brand-yellow transition-colors">About</a>
+                <a href="#impact" class="hover:text-brand-yellow transition-colors">Impact & History</a>
+                <a href="#events" class="hover:text-brand-yellow transition-colors">Events</a>
+                <a href="#merch" class="hover:text-brand-yellow transition-colors">Merch</a>
+                <a href="#dashboard" class="hover:text-brand-yellow transition-colors text-brand-yellow flex items-center gap-1">
+                    <i data-lucide="activity" class="w-4 h-4"></i> Athlete Portal
+                </a>
+            </div>
+
+            <!-- Action CTA / SSO Login -->
+            <div class="flex items-center gap-3">
+                <button id="navLoginBtn" onclick="toggleAuthModal()" class="flex items-center gap-2 bg-brand-border hover:bg-neutral-800 text-white px-4 py-2 rounded-md text-sm font-semibold transition-all">
+                    <i data-lucide="user" class="w-4 h-4 text-brand-yellow"></i>
+                    <span id="navLoginText">Athlete Sign In</span>
+                </button>
+                <a href="#join" class="bg-brand-yellow hover:bg-brand-yellowHover text-black px-5 py-2 rounded-md text-sm font-bold uppercase tracking-wide transition-all transform hover:-translate-y-0.5">
+                    Get Involved
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden border-b border-brand-border">
+        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-yellow-500/10 via-brand-dark to-brand-dark -z-10"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-card border border-brand-border text-brand-yellow text-xs font-bold uppercase tracking-widest mb-6">
+                <i data-lucide="heart-handshake" class="w-4 h-4"></i> Registered Non-Profit Organization
+            </div>
+            <h1 class="text-5xl sm:text-7xl font-extrabold tracking-tight font-heading uppercase leading-none mb-6">
+                Empowering Community Through <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-yellow via-amber-300 to-white">Sport & Wellness</span>
+            </h1>
+            <p class="max-w-2xl mx-auto text-lg sm:text-xl text-brand-muted font-normal mb-8 leading-relaxed">
+                HEZZI is a non-profit movement dedicated to elevating athletic performance, cultivating lifelong health habits, and bringing people together through inclusive competitions and wellness initiatives.
+            </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#events" class="w-full sm:w-auto bg-brand-yellow hover:bg-brand-yellowHover text-black font-bold px-8 py-4 rounded-md uppercase tracking-wider text-sm transition-all flex items-center justify-center gap-2">
+                    Explore Upcoming Events <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </a>
+                <a href="#dashboard" onclick="openDashboard()" class="w-full sm:w-auto glass-panel hover:bg-neutral-800 text-white font-semibold px-8 py-4 rounded-md text-sm transition-all flex items-center justify-center gap-2">
+                    <i data-lucide="layout-dashboard" class="w-4 h-4 text-brand-yellow"></i> Access Athlete Dashboard
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT & VALUES SECTION -->
+    <section id="about" class="py-20 border-b border-brand-border bg-black/40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-brand-card p-8 rounded-xl border border-brand-border relative overflow-hidden group hover:border-brand-yellow/50 transition-all">
+                    <div class="bg-brand-yellow/10 p-3 rounded-lg w-fit text-brand-yellow mb-6">
+                        <i data-lucide="target" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold font-heading mb-3">Our Mission</h3>
+                    <p class="text-brand-muted leading-relaxed">To remove barriers in sport and wellness by delivering accessible community events, elite competitive opportunities, and holistic fitness tracking for athletes of all stages.</p>
+                </div>
+                <div class="bg-brand-card p-8 rounded-xl border border-brand-border relative overflow-hidden group hover:border-brand-yellow/50 transition-all">
+                    <div class="bg-brand-yellow/10 p-3 rounded-lg w-fit text-brand-yellow mb-6">
+                        <i data-lucide="users" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold font-heading mb-3">Community Driven</h3>
+                    <p class="text-brand-muted leading-relaxed">100% of our organization’s revenue and fundraised capital goes directly back into hosting local leagues, supporting youth programs, and organizing health summits.</p>
+                </div>
+                <div class="bg-brand-card p-8 rounded-xl border border-brand-border relative overflow-hidden group hover:border-brand-yellow/50 transition-all">
+                    <div class="bg-brand-yellow/10 p-3 rounded-lg w-fit text-brand-yellow mb-6">
+                        <i data-lucide="zap" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold font-heading mb-3">Data & Wellness</h3>
+                    <p class="text-brand-muted leading-relaxed">Empowering our community members with modern tools to set personal physical goals, integrate wearable device metrics, and stay motivated together.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- IMPACT & HISTORY GALLERY SECTION -->
+    <section id="impact" class="py-20 border-b border-brand-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                <div>
+                    <span class="text-brand-yellow font-bold uppercase tracking-widest text-xs">Archive & Highlights</span>
+                    <h2 class="text-4xl font-extrabold font-heading uppercase mt-2">Community Gallery & History</h2>
+                </div>
+                <p class="text-brand-muted max-w-md mt-4 md:mt-0 text-sm">
+                    Select a filter to browse through our previous seasons, championship moments, charity runs, and holistic wellness summits.
+                </p>
+            </div>
+
+            <!-- Filter Buttons -->
+            <div class="flex flex-wrap gap-2 mb-8" id="galleryFilter">
+                <button onclick="filterGallery('all')" class="gallery-btn bg-brand-yellow text-black font-bold px-4 py-2 rounded-md text-xs uppercase tracking-wider">All Events</button>
+                <button onclick="filterGallery('champions')" class="gallery-btn bg-brand-card hover:bg-neutral-800 text-brand-muted hover:text-white font-bold px-4 py-2 rounded-md text-xs uppercase tracking-wider border border-brand-border">Champions & Seasons</button>
+                <button onclick="filterGallery('charity')" class="gallery-btn bg-brand-card hover:bg-neutral-800 text-brand-muted hover:text-white font-bold px-4 py-2 rounded-md text-xs uppercase tracking-wider border border-brand-border">Charity Events</button>
+                <button onclick="filterGallery('summits')" class="gallery-btn bg-brand-card hover:bg-neutral-800 text-brand-muted hover:text-white font-bold px-4 py-2 rounded-md text-xs uppercase tracking-wider border border-brand-border">Wellness Summits</button>
+            </div>
+
+            <!-- Dynamic Image Grid Structure -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="galleryGrid">
+                
+                <!-- S1 Photo Placeholder -->
+                <div class="gallery-item champions group relative bg-brand-card border border-brand-border rounded-xl overflow-hidden aspect-square flex flex-col justify-end p-6 cursor-pointer" onclick="openPhotoModal('Season 1 Highlights', 'S1 League & Tournament Memories')">
+                    <div class="absolute inset-0 bg-neutral-900/80 group-hover:bg-neutral-900/40 transition-all flex items-center justify-center">
+                        <i data-lucide="image" class="w-12 h-12 text-brand-border group-hover:text-brand-yellow transition-colors"></i>
+                    </div>
+                    <div class="relative z-10">
+                        <span class="bg-brand-yellow text-black text-[10px] font-black px-2 py-0.5 uppercase tracking-wider rounded">Season 1</span>
+                        <h4 class="font-heading font-bold text-lg mt-2">S1 Highlights</h4>
+                        <p class="text-xs text-brand-muted">Click to add/view photos</p>
+                    </div>
+                </div>
+
+                <!-- S2 Photo Placeholder -->
+                <div class="gallery-item champions group relative bg-brand-card border border-brand-border rounded-xl overflow-hidden aspect-square flex flex-col justify-end p-6 cursor-pointer" onclick="openPhotoModal('Season 2 Highlights', 'S2 Competitive Moments')">
+                    <div class="absolute inset-0 bg-neutral-900/80 group-hover:bg-neutral-900/40 transition-all flex items-center justify-center">
+                        <i data-lucide="image" class="w-12 h-12 text-brand-border group-hover:text-brand-yellow transition-colors"></i>
+                    </div>
+                    <div class="relative z-10">
+                        <span class="bg-brand-yellow text-black text-[10px] font-black px-2 py-0.5 uppercase tracking-wider rounded">Season 2</span>
+                        <h4 class="font-heading font-bold text-lg mt-2">S2 Highlights</h4>
+                        <p class="text-xs text-brand-muted">Click to add/view photos</p>
+                    </div>
+                </div>
+
+                <!-- S3 Photo Placeholder -->
+                <div class="gallery-item champions group relative bg-brand-card border border-brand-border rounded-xl overflow-hidden aspect-square flex flex-col justify-end p-6 cursor-pointer" onclick="openPhotoModal('Season 3 Highlights', 'S3 Expansion Events')">
+                    <div class="absolute inset-0 bg-neutral-900/80 group-hover:bg-neutral-900/40 transition-all flex items-center justify-center">
+                        <i data-lucide="image" class="w-12 h-12 text-brand-border group-hover:text-brand-yellow transition-colors"></i>
+                    </div>
+                    <div class="relative z-10">
+                        <span class="bg-brand-yellow text-black text-[10px] font-black px-2 py-0.5 uppercase tracking-wider rounded">Season 3</span>
+                        <h4 class="font-heading font-bold text-lg mt-2">S3 Highlights</h4>
+                        <p class="text-xs text-brand-muted">Click to add/view photos</p>
+                    </div>
+                </div>
+
+                <!-- Summer '23 Champions -->
+                <div class="gallery-item champions group relative bg-brand-card border border-brand-border rounded-xl overflow-hidden aspect-square flex flex-col justify-end p-6 cursor-pointer" onclick="openPhotoModal('Summer \'23 Champions', 'Tournament Winners & Finals Showcase')">
+                    <div class="absolute inset-0 bg-neutral-900/80 group-hover:bg-neutral-900/40 transition-all flex items-center justify-center">
+                        <i data-lucide="trophy" class="w-12 h-12 text-brand-border group-hover:text-brand-yellow transition-colors"></i>
+                    </div>
+                    <div class="relative z-10">
+                        <span class="bg-amber-500 text-black text-[10px] font-black px-2 py-0.5 uppercase tracking-wider rounded">Championship</span>
+                        <h4 class="font-heading font-bold text-lg mt-2">Summer '23 Champions</h4>
+                        <p class="text-xs text-brand-muted">Click to add/view photos</p>
+                    </div>
+                </div>
+
+                <!-- Summer '24 Champions -->
+                <div class="gallery-item champions group relative bg-brand-card border border-brand-border rounded-xl overflow-hidden aspect-square flex flex-col justify-end p-6 cursor-pointer" onclick="openPhotoModal('Summer \'24 Champions', 'Summer Season Winners')">
+                    <div class="absolute inset-0 bg-neutral-900/80 group-hover:bg-neutral-900/40 transition-all flex items-center justify-center">
+                        <i data-lucide="trophy" class="w-12 h-12 text-brand-border group-hover:text-brand-yellow transition-colors"></i>
+                    </div>
+                    <div class="relative z-10">
+                        <span class="bg-amber-500 text-black text-[10px] font-black px-2 py-0.5 uppercase tracking-wider rounded">Championship</span>
+                        <h4 class="font-heading font-bold text-lg mt-2">Summer '24 Champions</h4>
+                        <p class="text-xs text-brand-muted">Click to add/view photos</p>
+                    </div>
+                </div>
+
+                <!-- Fall '24 Champions -->
+                <div class="gallery-item champions group relative bg-brand-card border border-brand-border rounded-xl overflow-hidden aspect-square flex flex-col justify-end p-6 cursor-pointer" onclick="openPhotoModal('Fall \'24 Champions', 'Fall League Title Games')">
+                    <div class="absolute inset-0 bg-neutral-900/80 group-hover:bg-neutral-900/40 transition-all flex items-center justify-center">
+                        <i data-lucide="trophy" class="w-12 h-12 text-brand-border group-hover:text-brand-yellow transition-colors"></i>
+                    </div>
+                    <div class="relative z-10">
+                        <span class="bg-amber-500 text-black text-[10px] font-black px-2 py-0.5 uppercase tracking-wider rounded">Championship</span>
+                        <h4 class="font-heading font-bold text-lg mt-2">Fall '24 Champions</h4>
+                        <p class="text-xs text-brand-muted">Click to add/view photos</p>
+                    </div>
+                </div>
+
+                <!-- Charity Events -->
+                <div class="gallery-item charity group relative bg-brand-card border border-brand-border rounded-xl overflow-hidden aspect-square flex flex-col justify-end p-6 cursor-pointer" onclick="openPhotoModal('Charity Fundraisers', 'Giving back to the community through sports')">
+                    <div class="absolute inset-0 bg-neutral-900/80 group-hover:bg-neutral-900/40 transition-all flex items-center justify-center">
+                        <i data-lucide="heart" class="w-12 h-12 text-brand-border group-hover:text-rose-500 transition-colors"></i>
+                    </div>
+                    <div class="relative z-10">
+                        <span class="bg-rose-500 text-white text-[10px] font-black px-2 py-0.5 uppercase tracking-wider rounded">Charity</span>
+                        <h4 class="font-heading font-bold text-lg mt-2">Charity Events</h4>
+                        <p class="text-xs text-brand-muted">Click to add/view photos</p>
+                    </div>
+                </div>
+
+                <!-- Wellness Summits -->
+                <div class="gallery-item summits group relative bg-brand-card border border-brand-border rounded-xl overflow-hidden aspect-square flex flex-col justify-end p-6 cursor-pointer" onclick="openPhotoModal('Wellness Summits', 'Workshops, recovery, and holistic health')">
+                    <div class="absolute inset-0 bg-neutral-900/80 group-hover:bg-neutral-900/40 transition-all flex items-center justify-center">
+                        <i data-lucide="sparkles" class="w-12 h-12 text-brand-border group-hover:text-emerald-400 transition-colors"></i>
+                    </div>
+                    <div class="relative z-10">
+                        <span class="bg-emerald-500 text-black text-[10px] font-black px-2 py-0.5 uppercase tracking-wider rounded">Wellness</span>
+                        <h4 class="font-heading font-bold text-lg mt-2">Wellness Summits</h4>
+                        <p class="text-xs text-brand-muted">Click to add/view photos</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ATHLETE DASHBOARD & INTEGRATIONS SECTION -->
+    <section id="dashboard" class="py-20 border-b border-brand-border bg-neutral-950/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-brand-yellow font-bold uppercase tracking-widest text-xs">Private Portal</span>
+                <h2 class="text-4xl font-extrabold font-heading uppercase mt-2">Athlete Wellness Dashboard</h2>
+                <p class="text-brand-muted mt-3 text-sm">
+                    Log in with your `@hezziclub.com` or personal Google Account to track wellness goals, connect wearable devices (Garmin, Wyze, Strava), and log community activity.
+                </p>
+            </div>
+
+            <!-- SSO Login CTA Card (Logged Out State) -->
+            <div id="loggedOutState" class="bg-brand-card border border-brand-border rounded-2xl p-8 max-w-2xl mx-auto text-center shadow-2xl">
+                <div class="w-16 h-16 bg-white/5 border border-white/10 rounded-full flex items-center justify-center mx-auto mb-6 text-brand-yellow">
+                    <i data-lucide="shield-check" class="w-8 h-8"></i>
+                </div>
+                <h3 class="text-2xl font-bold font-heading mb-2">Sign in to HEZZI Club</h3>
+                <p class="text-brand-muted text-sm mb-6">Use your Google SSO credentials to access personal goal setting and health data sync.</p>
+                <button onclick="simulatedGoogleLogin()" class="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-white text-gray-900 font-bold px-6 py-3.5 rounded-lg hover:bg-gray-100 transition-all text-sm shadow-md">
+                    <svg class="w-5 h-5" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/></svg>
+                    Sign in with Google SSO
+                </button>
+            </div>
+
+            <!-- Interactive Dashboard Preview (Logged In State - Hidden by default) -->
+            <div id="loggedInState" class="hidden space-y-8">
+                <!-- User Profile Header -->
+                <div class="bg-brand-card border border-brand-border rounded-xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-brand-yellow rounded-full flex items-center justify-center text-black font-black text-xl">
+                            A
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold font-heading" id="userDisplayName">Welcome back, Athlete</h3>
+                            <p class="text-xs text-brand-muted" id="userEmail">athlete@hezziclub.com • Connected via Google SSO</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="inline-flex items-center gap-1 text-xs font-semibold px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Health Sync Active
+                        </span>
+                        <button onclick="logout()" class="text-xs text-brand-muted hover:text-white underline ml-4">Sign Out</button>
+                    </div>
+                </div>
+
+                <!-- Integrations Status Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <div class="bg-brand-card p-5 rounded-xl border border-brand-border flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="bg-blue-500/10 text-blue-400 p-2.5 rounded-lg"><i data-lucide="watch" class="w-5 h-5"></i></div>
+                            <div>
+                                <h4 class="text-sm font-bold">Garmin Forerunner 965</h4>
+                                <p class="text-xs text-brand-muted">Last sync: 10 mins ago</p>
+                            </div>
+                        </div>
+                        <i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-400"></i>
+                    </div>
+
+                    <div class="bg-brand-card p-5 rounded-xl border border-brand-border flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="bg-emerald-500/10 text-emerald-400 p-2.5 rounded-lg"><i data-lucide="scale" class="w-5 h-5"></i></div>
+                            <div>
+                                <h4 class="text-sm font-bold">Wyze Scale S</h4>
+                                <p class="text-xs text-brand-muted">Last sync: Today, 8:00 AM</p>
+                            </div>
+                        </div>
+                        <i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-400"></i>
+                    </div>
+
+                    <div class="bg-brand-card p-5 rounded-xl border border-brand-border flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="bg-orange-500/10 text-orange-400 p-2.5 rounded-lg"><i data-lucide="flame" class="w-5 h-5"></i></div>
+                            <div>
+                                <h4 class="text-sm font-bold">Strava / Apple Health</h4>
+                                <p class="text-xs text-brand-muted">Auto-Sync Enabled</p>
+                            </div>
+                        </div>
+                        <i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-400"></i>
+                    </div>
+                </div>
+
+                <!-- Wellness Goals Tracker -->
+                <div class="bg-brand-card border border-brand-border rounded-xl p-6">
+                    <div class="flex items-center justify-between mb-6">
+                        <h4 class="text-lg font-bold font-heading flex items-center gap-2">
+                            <i data-lucide="trophy" class="w-5 h-5 text-brand-yellow"></i> Community Wellness Goals
+                        </h4>
+                        <button onclick="addCustomGoal()" class="bg-brand-yellow/10 hover:bg-brand-yellow/20 text-brand-yellow border border-brand-yellow/30 text-xs font-bold px-3 py-1.5 rounded transition-all">
+                            + Set New Goal
+                        </button>
+                    </div>
+
+                    <div class="space-y-6" id="goalsContainer">
+                        <!-- Goal 1 -->
+                        <div>
+                            <div class="flex justify-between text-sm font-semibold mb-2">
+                                <span>Weekly Running Distance (Garmin)</span>
+                                <span class="text-brand-yellow">28.5 / 35.0 km</span>
+                            </div>
+                            <div class="w-full bg-neutral-800 h-3 rounded-full overflow-hidden">
+                                <div class="bg-brand-yellow h-full rounded-full" style="width: 81%;"></div>
+                            </div>
+                        </div>
+
+                        <!-- Goal 2 -->
+                        <div>
+                            <div class="flex justify-between text-sm font-semibold mb-2">
+                                <span>Monthly Active Recovery Hours</span>
+                                <span class="text-emerald-400">12 / 12 Hours (Completed)</span>
+                            </div>
+                            <div class="w-full bg-neutral-800 h-3 rounded-full overflow-hidden">
+                                <div class="bg-emerald-400 h-full rounded-full" style="width: 100%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- UPCOMING EVENTS & JOIN -->
+    <section id="events" class="py-20 border-b border-brand-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-brand-yellow font-bold uppercase tracking-widest text-xs">Calendar</span>
+                <h2 class="text-4xl font-extrabold font-heading uppercase mt-2">Upcoming Events & Tournaments</h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                <!-- Event 1 -->
+                <div class="bg-brand-card border border-brand-border p-6 rounded-xl flex gap-6 items-center">
+                    <div class="bg-brand-yellow text-black flex flex-col items-center justify-center p-4 rounded-lg font-bold min-w-[80px]">
+                        <span class="text-xs uppercase tracking-wider">OCT</span>
+                        <span class="text-2xl font-black font-heading">14</span>
+                    </div>
+                    <div>
+                        <span class="text-xs font-bold text-brand-yellow uppercase tracking-wider">Community Tournament</span>
+                        <h3 class="text-xl font-bold font-heading mt-1">Fall '26 HEZZI Invitational</h3>
+                        <p class="text-xs text-brand-muted mt-1">Local Sports Complex • Open to all skill levels</p>
+                    </div>
+                </div>
+
+                <!-- Event 2 -->
+                <div class="bg-brand-card border border-brand-border p-6 rounded-xl flex gap-6 items-center">
+                    <div class="bg-brand-border text-white flex flex-col items-center justify-center p-4 rounded-lg font-bold min-w-[80px]">
+                        <span class="text-xs uppercase tracking-wider">NOV</span>
+                        <span class="text-2xl font-black font-heading">02</span>
+                    </div>
+                    <div>
+                        <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider">Wellness Workshop</span>
+                        <h3 class="text-xl font-bold font-heading mt-1">Recovery & Mobility Summit</h3>
+                        <p class="text-xs text-brand-muted mt-1">Community Hub • Nutrition & Active Recovery</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MERCH PREVIEW SECTION -->
+    <section id="merch" class="py-20 border-b border-brand-border bg-neutral-950/40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <span class="text-brand-yellow font-bold uppercase tracking-widest text-xs">Support The Club</span>
+            <h2 class="text-4xl font-extrabold font-heading uppercase mt-2">HEZZI Merchandise</h2>
+            <p class="text-brand-muted max-w-xl mx-auto mt-3 text-sm">
+                Official high-performance apparel. 100% of proceeds go directly toward funding our community non-profit athletic programs and youth events.
+            </p>
+
+            <div class="mt-12 inline-flex flex-col items-center justify-center bg-brand-card border border-brand-border p-10 rounded-2xl max-w-md w-full">
+                <div class="w-16 h-16 bg-brand-yellow/10 rounded-full flex items-center justify-center text-brand-yellow mb-4">
+                    <i data-lucide="shopping-bag" class="w-8 h-8"></i>
+                </div>
+                <h3 class="text-xl font-bold font-heading uppercase">Collection Dropping Soon</h3>
+                <p class="text-xs text-brand-muted mt-2 mb-6">We are currently vetting sustainable & premium gear suppliers to deliver top quality.</p>
+                
+                <form onsubmit="event.preventDefault(); alert('Thank you for joining the VIP Merch waitlist!');" class="w-full flex gap-2">
+                    <input type="email" required placeholder="Enter your email" class="bg-neutral-900 border border-brand-border rounded-lg px-4 py-2.5 text-sm w-full focus:outline-none focus:border-brand-yellow text-white">
+                    <button type="submit" class="bg-brand-yellow text-black font-bold px-4 py-2.5 rounded-lg text-xs uppercase tracking-wider whitespace-nowrap hover:bg-brand-yellowHover">Notify Me</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="mt-auto bg-black border-t border-brand-border py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+            <div class="flex items-center gap-3">
+                <div class="bg-brand-yellow px-2.5 py-1 transform -skew-x-12">
+                    <span class="logo-text text-xl font-black text-black transform skew-x-12 inline-block">HEZZI</span>
+                </div>
+                <span class="text-xs text-brand-muted">© 2026 HEZZI Club Non-Profit. All Rights Reserved.</span>
+            </div>
+            <div class="flex space-x-6 text-sm text-brand-muted">
+                <a href="mailto:info@hezziclub.com" class="hover:text-brand-yellow transition-colors">Contact Us</a>
+                <a href="https://hezziclub.com" class="hover:text-brand-yellow transition-colors">hezziclub.com</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- PHOTO MODAL -->
+    <div id="photoModal" class="fixed inset-0 bg-black/90 backdrop-blur-md hidden z-50 flex items-center justify-center p-4">
+        <div class="bg-brand-card border border-brand-border max-w-lg w-full rounded-2xl p-6 relative">
+            <button onclick="closePhotoModal()" class="absolute top-4 right-4 text-brand-muted hover:text-white"><i data-lucide="x" class="w-6 h-6"></i></button>
+            <h3 id="modalTitle" class="text-2xl font-bold font-heading mb-2"></h3>
+            <p id="modalDesc" class="text-sm text-brand-muted mb-6"></p>
+            <div class="border-2 border-dashed border-brand-border rounded-xl p-8 text-center bg-neutral-900/50 mb-6">
+                <i data-lucide="upload-cloud" class="w-10 h-10 text-brand-yellow mx-auto mb-2"></i>
+                <p class="text-sm font-semibold">Image Container Ready</p>
+                <p class="text-xs text-brand-muted mt-1">Replace this placeholder by linking your photos or cloud storage bucket.</p>
+            </div>
+            <button onclick="closePhotoModal()" class="w-full bg-brand-border hover:bg-neutral-800 text-white font-bold py-3 rounded-lg text-sm">Close Window</button>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT FOR INTERACTIVITY -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Simulated Auth State
+        let isLoggedIn = false;
+
+        function simulatedGoogleLogin() {
+            isLoggedIn = true;
+            document.getElementById('loggedOutState').classList.add('hidden');
+            document.getElementById('loggedInState').classList.remove('hidden');
+            document.getElementById('navLoginText').innerText = 'Dashboard Active';
+        }
+
+        function logout() {
+            isLoggedIn = false;
+            document.getElementById('loggedOutState').classList.remove('hidden');
+            document.getElementById('loggedInState').classList.add('hidden');
+            document.getElementById('navLoginText').innerText = 'Athlete Sign In';
+        }
+
+        function toggleAuthModal() {
+            const dashboardSection = document.getElementById('dashboard');
+            dashboardSection.scrollIntoView({ behavior: 'smooth' });
+            if (!isLoggedIn) {
+                simulatedGoogleLogin();
+            }
+        }
+
+        function openDashboard() {
+            const dashboardSection = document.getElementById('dashboard');
+            dashboardSection.scrollIntoView({ behavior: 'smooth' });
+            if (!isLoggedIn) {
+                simulatedGoogleLogin();
+            }
+        }
+
+        // Gallery Filter Functionality
+        function filterGallery(category) {
+            const items = document.querySelectorAll('.gallery-item');
+            items.forEach(item => {
+                if (category === 'all' || item.classList.contains(category)) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        // Photo Modal Controls
+        function openPhotoModal(title, desc) {
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalDesc').innerText = desc;
+            document.getElementById('photoModal').classList.remove('hidden');
+        }
+
+        function closePhotoModal() {
+            document.getElementById('photoModal').classList.add('hidden');
+        }
+
+        // Dynamic Goal Addition
+        function addCustomGoal() {
+            const goalName = prompt("Enter your new wellness goal (e.g., 'Weekly Target Steps'):");
+            if (goalName) {
+                const goalsContainer = document.getElementById('goalsContainer');
+                const newGoalHTML = `
+                    <div>
+                        <div class="flex justify-between text-sm font-semibold mb-2">
+                            <span>${goalName}</span>
+                            <span class="text-brand-yellow">0 % Complete</span>
+                        </div>
+                        <div class="w-full bg-neutral-800 h-3 rounded-full overflow-hidden">
+                            <div class="bg-brand-yellow h-full rounded-full" style="width: 5%;"></div>
+                        </div>
+                    </div>
+                `;
+                goalsContainer.innerHTML += newGoalHTML;
+            }
+        }
+    </script>
+</body>
+</html>
